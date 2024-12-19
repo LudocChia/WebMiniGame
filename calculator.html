@@ -7,51 +7,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <style>
-        .calculator {
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
             display: flex;
+            font-size: 12px;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        .button {
+        button {
             border: none;
-            background-color: azure;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            cursor: pointer;
+        }
+
+        .calculator {
+            padding: 2%;
+            border-radius: 20px;
+            background-color: rgb(31, 31, 31);
+            color: white;
+        }
+
+        .calculator__display {
+            display: flex;
+            border: 2px solid blue;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .calculator__display input {
+            border: none;
+            color: white;
+            padding: 0 10px;
+            font-size: 1rem;
+            background-color: rgb(31, 31, 31);
+            outline: none;
         }
 
 
-        .calculator__display {}
+        .calculator__button {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 5px;
+        }
 
-        .calculator__button {}
+        .calculator__button--number {
+            background-color: rgb(51, 51, 51);
+        }
+
+        .calculator__button--operator--primary {
+            background-color: rgb(253, 161, 10);
+        }
+
+        .calculator__button--operator--secondary {
+            color: black;
+        }
     </style>
 </head>
 
 <body>
     <div class="calculator">
         <div class="calculator__display">
-            <p></p>
+            <input type="text" class="input calculator__display__input">
         </div>
         <div class="calculator__button">
-            <button class="button calculator__button--operator" onclick="updateCalculation('2');">2</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('3');">3</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('1');">1</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('4');">4</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('5');">5</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('6');">6</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('7');">7</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('8');">8</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('9');">9</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('0');">0</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation('.');">.</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation(' / ');">&divide;</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation(' * ');">&times;</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation(' - ');">&minus;</button>
-            <button class="button calculator__button--operator" onclick="updateCalculation(' + ');">+</button>
-            <button class="button calculator__button--operator" onclick="finishCalculation()">=</button>
+            <button class="button calculator__button--operator--secondary" onclick="resetCalculation()">C</button>
+            <button class="button calculator__button--operator--secondary" onclick="updateCalculation(' % ')">%</button>
+            <button class="button calculator__button--operator--secondary" onclick="toggleSign()">+/-</button>
+            <button class="button calculator__button--operator--primary"
+                onclick="updateCalculation(' / ');">&divide;</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('7');">7</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('8');">8</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('9');">9</button>
+            <button class="button calculator__button--operator--primary"
+                onclick="updateCalculation(' * ');">&times;</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('4');">4</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('5');">5</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('6');">6</button>
+            <button class="button calculator__button--operator--primary"
+                onclick="updateCalculation(' - ');">&minus;</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('1');">1</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('2');">2</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('3');">3</button>
+            <button class="button calculator__button--operator--primary" onclick="updateCalculation(' + ');">+</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('0');">0</button>
+            <button class="button calculator__button--number" onclick="updateCalculation('.');">.</button>
+            <button class="button calculator__button--operator--primary" onclick="finishCalculation()">=</button>
         </div>
-
-        <button onclick="resetCalculation()">Clear</button>
-        </p>
-        <p class="output output__text--calculation"></p>
-
     </div>
+
     <script>
         let calculation = JSON.parse(localStorage.getItem('calculation')) || '';
 
@@ -74,9 +132,19 @@
             localStorage.setItem('calculation', JSON.stringify(calculation));
         }
 
+        function toggleSign() {
+            if (calculation.startsWith('-')) {
+                calculation = calculation.substring(1);
+            } else {
+                calculation = '-' + calculation;
+            }
+            localStorage.setItem('calculation', JSON.stringify(calculation));
+            displayCalculation();
+        }
+
         function displayCalculation() {
-            const paragraphElement = document.querySelector('.output__text--calculation');
-            paragraphElement.innerText = calculation;
+            const inputElement = document.querySelector('.calculator__display__input');
+            inputElement.value = calculation;
         }
 
         displayCalculation()
