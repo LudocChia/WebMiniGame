@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            cursor: pointer;
+        }
+
+        input {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="button button--9a">9a</button>
+    </div>
+    <div class="container">
+        <button class="button button--9b">9b</button>
+    </div>
+    <div class="container">
+        <button onclick="play('heads')">heads</button>
+        <button onclick="play('tails')">tails</button>
+        <p class="output__text output__text--game-result"></p>
+    </div>
+    <div class="container">
+        <div class="input__container">
+            <input class="input input__form-name" onkeydown="handleKeyDown(event.key)" type="text"
+                placeholder="Name"><button onclick="displayUserInput()">Submit</button>
+            <p class="output__text output__text--user-name"></p>
+        </div>
+    </div>
+
+
+    <script>
+        const buttonElement = document.querySelector('.button--9b');
+        buttonElement.innerText = '9b done'
+
+        function play(playerMove) {
+            const paragraphElement = document.querySelector('.output__text--game-result');
+
+            paragraphElement.innerText = `You chose: ${playerMove}`;
+        }
+
+        function handleKeyDown(inputValues) {
+            if (inputValues === 'Enter') {
+                displayUserInput();
+            }
+        }
+
+        function displayUserInput() {
+            const userName = document.querySelector('.input__form-name').value;
+            const paragraphElement = document.querySelector('.output__text--user-name');
+            paragraphElement.innerText = `Your name is: ${userName}`
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

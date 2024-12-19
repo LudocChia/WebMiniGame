@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+
+        .button {
+            color: black;
+            background-color: rgb(225, 225, 225);
+        }
+
+        .button--toggled {
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="checkButtonToggle(this)" class="button">Gaming</button>
+    <button onclick="checkButtonToggle(this)" class="button">Music</button>
+    <button onclick="checkButtonToggle(this)" class="button">Tech</button>
+    <script>
+        function checkButtonToggle(buttonElement) {
+            if (!buttonElement.classList.contains('button--toggled')) {
+                turnOffPreviousButton();
+                buttonElement.classList.add('button--toggled');
+            } else {
+                buttonElement.classList.remove('button--toggled')
+            }
+        }
+
+
+        function turnOffPreviousButton() {
+            const previosToggleButton = document.querySelector('.button--toggled');
+            if (previosToggleButton) previosToggleButton.classList.remove('button--toggled');
+        }
+    </script>
+</body>
+
+</html>

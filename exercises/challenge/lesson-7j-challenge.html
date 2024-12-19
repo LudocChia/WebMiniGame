@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <p>
+        <button onclick="updateCalculation('1');">1</button>
+        <button onclick="updateCalculation('2');">2</button>
+        <button onclick="updateCalculation('3');">3</button>
+        <button onclick="updateCalculation(' + ');">+</button>
+    </p>
+
+    <p>
+        <button onclick="updateCalculation('4');">4</button>
+        <button onclick="updateCalculation('5');">5</button>
+        <button onclick="updateCalculation('6');">6</button>
+        <button onclick="updateCalculation(' - ');">-</button>
+    </p>
+
+    <p>
+        <button onclick="updateCalculation('7');">7</button>
+        <button onclick="updateCalculation('8');">8</button>
+        <button onclick="updateCalculation('9');">9</button>
+        <button onclick="updateCalculation(' * ');">*</button>
+    </p>
+
+    <p>
+        <button onclick="updateCalculation('0');">0</button>
+        <button onclick="updateCalculation('.');">.</button>
+        <button onclick="alert(finishCalculation())">=</button>
+    </p>
+
+    <p>
+        <button onclick="console.log(calculation = '');">Clear</button>
+    </p>
+    <script>
+        let calculation = '';
+
+        function updateCalculation(operations) {
+            console.log(calculation = calculation + operations);
+            return calculation;
+        }
+
+        function finishCalculation() {
+            return eval(calculation);
+        }
+    </script>
+</body>
+
+</html>

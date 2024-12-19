@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Project & CSS</title>
+    <style>
+        /* Block */
+        button {
+            border: none;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 5px 10px;
+            outline: none;
+        }
+
+        /* Element */
+        .container__form-input {
+            display: flex;
+            gap: 5px;
+        }
+
+
+        /* Modifier */
+        .button--subscribe {
+            border-radius: 50px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+        }
+
+        .button--subscribe.button--activated {
+            background-color: rgb(240, 240, 240);
+            color: black;
+        }
+
+        .input--cost {
+            font-size: 15px;
+            border: 1px solid rgb(117, 117, 117);
+            border-radius: 2px;
+        }
+
+        .button--calculate {
+            background-color: green;
+            color: white;
+            border: 1px solid black;
+            padding: 10px 20px;
+        }
+
+        .output__text--error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>YouTube Subscribe Button</p>
+        <button class="button button--subscribe" onclick="subscribe()">Subscribe</button>
+    </div>
+    <div class="container">
+        <p>Amazon Shipping Calculator</p>
+        <p>Orders under $40 = +$10 shipping.</p>
+        <p>Orders over $40 = FREE shipping.</p>
+        <div class="container__form-input">
+            <input class="input input--cost" onkeydown="handleKeyDown(event.key)" type="text"
+                placeholder="Cost of order"><button onclick="calculateTotalCost()"
+                class="button button--calculate">Calculate</button>
+        </div>
+        <p class="output__text output__text--total-cost"></p>
+    </div>
+
+    <script>
+        function subscribe() {
+            const buttonElement = document.querySelector('.button--subscribe');
+            if (buttonElement.innerText === 'Subscribed') {
+                buttonElement.innerText = 'Subscribe';
+                buttonElement.classList.remove('button--activated');
+            } else {
+                buttonElement.innerText = 'Subscribed';
+                buttonElement.classList.add('button--activated');
+            }
+        }
+
+        function calculateTotalCost() {
+            const inputElement = document.querySelector('.input--cost');
+            const outputElement = document.querySelector('.output__text--total-cost');
+            const cost = Number(inputElement.value);
+            const totalCost = cost > 45 ? cost + 10 : cost;
+
+            if (totalCost < 0) {
+                outputElement.classList.add('output__text--error');
+                outputElement.innerText = `Error: cost cannot be less than $0`
+            } else {
+                outputElement.innerText = `Total Cost: $${totalCost}`;
+            }
+        }
+
+        function handleKeyDown(keyValues) {
+            if (event.key === 'Enter') {
+                calculateTotalCost();
+            }
+        }
+    </script>
+</body>
+
+</html>
