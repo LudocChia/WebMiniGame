@@ -4,16 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do List</title>
+    <link rel="stylesheet" href="style/todo-list.css">
 </head>
 
 <body>
-    <p>Todo List</p>
-    <input placeholder="Todo name" type="text">
-    <button onclick="addTodo()">Add</button>
+    <div class="todo">
+        <div class="todo__title">
+            <h1 class="todo__heading">To Do List</h1>
+        </div>
 
-    <script src="/script/todo-list.js"></script>
+        <div class="todo__control">
+            <input class="todo__control-input" onkeydown="handleOneKeyDown(event.key)" type="text"
+                placeholder="Todo name">
+            <input class="todo__control-date" type="date">
+            <button class="todo__button todo__button--add">Add</button>
+        </div>
+
+        <div class="todo__list"></div>
+    </div>
+    <script src="script/todo-list.js"></script>
 </body>
-
 
 </html>

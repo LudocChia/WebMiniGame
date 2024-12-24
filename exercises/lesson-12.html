@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+</head>
+
+<body>
+    <!-- <button onclick="switchButtonText()" class="button button--start">Start</button> -->
+    <!-- 12c 12d 12e -->
+    <!-- <button class="cart__button cart__button--add">Add to Cart</button>
+    <div class="cart__message"></div> -->
+    <!-- 12g -->
+    <!-- <button class="cart__button cart__button--increment">Add</button>
+    <button class="cart__button cart__button--decrement">Remove</button> -->
+
+    <script>
+        // 12a & 12b
+        // const add = function fun() {
+        //     console.log(2 + 3);
+        // }
+
+        // add();
+        // add();
+
+        // function runTwice(fun) {
+        //     fun();
+        //     fun();
+        // }
+
+        // runTwice(function () {
+        //     console.log('12b');
+        // });
+
+
+        // runTwice(add);
+
+        //12c
+        // const buttonElement = document.querySelector('.cart__button--add');
+
+        // setTimeout(function () {
+        //     buttonElement.innerText = 'Finished';
+        // }, 1000);
+
+        //12d
+        // function switchButtonText() {
+        //     const buttonElement = document.querySelector('.cart__button--add');
+        //     buttonElement.innerText = 'Loading...';
+        //     setTimeout(function () {
+        //         buttonElement.innerText = 'Finished';
+        //     }, 1000);
+        // }
+
+        // 12e
+        // function displayMessage() {
+        //     let timeoutId;
+
+        //     const messageElement = document.querySelector('.cart__message');
+        //     messageElement.innerHTML = 'Added';
+
+        //     // First, cancel the previous timeout so that
+        //     // it doesn't remove the message too quickly.
+        //     clearTimeout(timeoutId);
+
+        //     timeoutId = setTimeout(function () {
+        //         messageElement.innerHTML = '';
+        //     }, 2000);
+        //     console.log(timeoutId);
+        // }
+
+        // 12g
+        // setInterval(function () {
+        //     if (document.title === 'App') {
+        //         document.title = '(2) New Message'
+        //     } else {
+        //         document.title = 'App'
+        //     }
+        // }, 1000)
+
+        // 12h
+        // let message = 2;
+
+        // setInterval(function () {
+        //     if (document.title === 'App') {
+        //         document.title = `(${message}) New Message`
+        //     } else {
+        //         document.title = 'App'
+        //     }
+        // }, 1000)
+
+        // 12i
+        // let message = 0;
+        // let intervalId = null;
+
+        // function incrementMessage() {
+        //     message++;
+        //     updateInterval();
+        // }
+
+        // function decrementMessage() {
+        //     if (message > 0) {
+        //         message--;
+        //     }
+        //     updateInterval();
+        // }
+
+        // function updateInterval() {
+        //     if (message > 0 && intervalId === null) {
+        //         intervalId = setInterval(toggleTitle, 1000);
+        //     } else if (message > 0 && intervalId !== null) {
+        //         clearInterval(intervalId);
+        //         intervalId = setInterval(toggleTitle, 1000);
+        //     } else {
+        //         clearInterval(intervalId)
+        //         document.title = 'App';
+        //     }
+        // }
+
+        // function toggleTitle() {
+        //     if (document.title === 'App') {
+        //         document.title = `(${message}) New Message`;
+        //     } else {
+        //         document.title = 'App';
+        //     }
+        // }
+
+        // 12j
+        // const multiply = (value1, value2) => {
+        //     return value1 * value2;
+        // }
+
+        // console.log(multiply(2, 3));
+        // console.log(multiply(7, 10));
+
+        // 12k
+        // const multiply = (value1, value2) => value1 * value2;
+
+        // console.log(multiply(2, 3));
+        // console.log(multiply(7, 10));
+
+        // 12l
+        // const countPositive = (nums) => {
+        //     let count = 0;
+        //     nums.forEach((value, index) => {
+        //         if (nums[index] > 0) {
+        //             count++
+        //         }
+        //     })
+        //     return count;
+        // }
+        // console.log(countPositive([1, -3, 5]));
+        // console.log(countPositive([-2, 3, -5, 7, 10]));
+
+        // 12m
+        // const addNum = (array, num) => array.map((value, index) => value + num);
+
+        // console.log(addNum([1, 2, 3], 2));
+        // console.log(addNum([-2, -1, 0, 99], 2));
+
+        //12n
+        // function removeEgg(foods) {
+        //     let count = 0;
+        //     return foods.filter((value) => {
+        //         if (value === 'egg' && count < 2) {
+        //             count++
+        //             return false;
+        //         }
+        //         return true;
+        //     })
+        // }
+
+        // console.log(removeEgg(['egg', 'apple', 'egg', 'egg', 'ham']))
+
+        //12p
+        //12p(12c)
+        // const cartButton = document.querySelector('.cart__button--add');
+        // cartButton.addEventListener('click', () => {
+        //     setTimeout(() => {
+        //         cartButton.innerText = 'Finished';
+        //     }, 1000);
+        // })
+
+        //12p(12d)
+        // const cartButton = document.querySelector('.cart__button--add');
+
+        // cartButton.addEventListener('click', () => {
+
+        //     cartButton.innerText = 'Loading...';
+
+        //     setTimeout(() => {
+        //         cartButton.innerText = 'Finished';
+        //     }, 1000);
+
+        // })
+
+        //12p(12e)
+        // const cartButton = document.querySelector('.cart__button');
+        // const cartMessage = document.querySelector('.cart__message');
+        // let timeoutId;
+        // cartButton.addEventListener('click', () => {
+        //     clearTimeout(timeoutId);
+        //     cartMessage.innerHTML = 'Added';
+
+        //     timeoutId = setTimeout(() => {
+        //         cartMessage.innerHTML = '';
+        //     }, 2000);
+        //     console.log(timeoutId);
+        // })
+
+
+        //12p(12g)
+        // setInterval(() => {
+        //     if (document.title === 'App') {
+        //         document.title = '(2) New Message'
+        //     } else {
+        //         document.title = 'App'
+        //     }
+        // }, 1000)
+
+        //12p(12h)
+        // let message = 2;
+
+        // setInterval(() => {
+        //     if (document.title === 'App') {
+        //         document.title = `(${message}) New Message`
+        //     } else {
+        //         document.title = 'App'
+        //     }
+        // }, 1000)
+
+        // //12p(12i)
+        // let message = 0;
+        // let intervalId = null;
+
+        // const incrementButton = document.querySelector('.cart__button--increment')
+        // const decrementButton = document.querySelector('.cart__button--decrement')
+
+
+        // incrementButton.addEventListener('click', () => {
+        //     message++;
+        //     updateInterval();
+        // })
+
+        // decrementButton.addEventListener('click', () => {
+        //     if (message > 0) {
+        //         message--;
+        //     }
+        //     updateInterval();
+        // })
+
+        // const updateInterval = () => {
+        //     if (message > 0 && intervalId === null) {
+        //         intervalId = setInterval(toggleTitle, 1000);
+        //     } else if (message > 0 && intervalId !== null) {
+        //         clearInterval(intervalId);
+        //         intervalId = setInterval(toggleTitle, 1000);
+        //     } else {
+        //         clearInterval(intervalId)
+        //         document.title = 'App';
+        //     }
+        // }
+
+        // const toggleTitle = () => {
+        //     if (document.title === 'App') {
+        //         document.title = `(${message}) New Message`;
+        //     } else {
+        //         document.title = 'App';
+        //     }
+        // }
+
+        //12t
+
+
+    </script>
+</body>
+
+</html>

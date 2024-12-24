@@ -1,0 +1,61 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: white;
+    padding: 1.2rem 1.2rem;
+    background-color: rgb(28, 28, 28);
+}
+
+button {
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem 2rem;
+    width: 100px;
+}
+
+
+.todo__control-input,
+.todo__control-date {
+    padding: 0.5rem 0.75rem;
+}
+
+.todo__control {
+    display: grid;
+    grid-template-columns: 200px 150px 100px;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
+}
+
+.todo__item {
+    display: grid;
+    grid-template-columns: 200px 150px 100px;
+    gap: 0.5rem;
+    align-items: center;
+    border-bottom: 1px solid #555;
+}
+
+.todo__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo__button {
+    display: inline-block;
+}
+
+.todo__button--add {
+    background-color: green;
+}
+
+.todo__button--delete {
+    background-color: red;
+
+}
