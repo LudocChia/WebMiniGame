@@ -33,6 +33,7 @@
 
         /* Button Block & Modifiers */
         .button {
+            display: inline-block;
             cursor: pointer;
             border: none;
             color: white;
@@ -51,12 +52,27 @@
             width: 100%;
         }
 
+        .rps__confirm {
+            display: none;
+            gap: 0.25rem;
+        }
+
+        .rps__confirm--active {
+            display: flex;
+            align-items: center;
+        }
+
+        .rps__confirm p {
+            display: inline-block;
+        }
+
         .button--reset,
-        .button--auto {
+        .button--auto,
+        .button--confirm-yes,
+        .button--confirm-no {
             background-color: white;
             color: black;
             padding: 5px 20px;
-            margin-top: 20px;
         }
 
         /* Icon Element */
@@ -84,18 +100,36 @@
     <h2 class="rps__result js-result"></h2>
     <p class="rps__move js-move"></p>
     <p class="rps__score js-score"></p>
-    <button class="button button--reset" onclick="resetScore()">Reset Score</button>
-    <button class="button button--auto" onclick="autoPlay()">Auto Play</button>
-    <p class="rps__instruction">type'r' => play rock</p>
-    <p class="rps__instruction">type'p' => play paper</p>
-    <p class="rps__instruction">type's' => play scissors</p>
-
+    <button class="button button--reset">Reset Score</button>
+    <button class="button button--auto">Auto Play</button>
+    <div class="rps__confirm">
+        <p class="rps__confirm-text">Are you sure you want to reset the score?</p>
+        <button class="button button--confirm-yes">Yes</button>
+        <button class="button button--confirm-no">No</button>
+    </div>
+    <p class="rps__instruction">type'r' => Play Rock</p>
+    <p class="rps__instruction">type'p' => Play Paper</p>
+    <p class="rps__instruction">type's' => Play Scissors</p>
+    <p class="rps__instruction">type'a' => Auto Play</p>
     <script>
         let result = '-';
         let computerMove;
         let isAutoPlaying = false;
         let intervalId;
         let score = JSON.parse(localStorage.getItem('score')) || { win: 0, lose: 0, draw: 0 };
+        const buttonAuto = document.querySelector('.button--auto');
+        const confirmElement = document.querySelector('.rps__confirm');
+        const buttonYes = document.querySelector('.button--confirm-yes');
+        const buttonNo = document.querySelector('.button--confirm-no');
+        const buttonReset = document.querySelector('.button--reset');
+
+        buttonReset.addEventListener('click', () => {
+            showConfirm();
+        })
+
+        buttonAuto.addEventListener('click', () => {
+            autoPlay();
+        })
 
         document.querySelector('.button--play-rock')
             .addEventListener('click', () => {
@@ -119,6 +153,10 @@
                 play('paper');
             } else if (event.key === 's') {
                 play('scissors');
+            } else if (event.key === 'a') {
+                autoPlay();
+            } else if (event.key === 'Backspace') {
+                showConfirm();
             }
         })
 
@@ -157,11 +195,16 @@
             localStorage.setItem('score', JSON.stringify(score));
         }
 
-        function resetScore() {
+        buttonYes.addEventListener('click', () => {
             score = { win: 0, lose: 0, draw: 0 };
             localStorage.setItem('score', JSON.stringify(score));
             displayResult('-', '-');
-        }
+            hideConfirm();
+        })
+
+        buttonNo.addEventListener('click', () => {
+            hideConfirm();
+        })
 
         function displayResult(playerMove, computerMove) {
             document.querySelector('.js-result').innerText = `You ${result}.`;
@@ -173,14 +216,24 @@
 
         function autoPlay() {
             if (!isAutoPlaying) {
+                buttonAuto.innerText = 'Auto Playing';
                 intervalId = setInterval(() => {
                     play(pickComputerMove());
                 }, 1000);
                 isAutoPlaying = true;
             } else {
                 clearInterval(intervalId)
+                buttonAuto.innerText = 'Auto Play';
                 isAutoPlaying = false;
             }
+        }
+
+        function showConfirm() {
+            confirmElement.classList.add('rps__confirm--active');
+        }
+
+        function hideConfirm() {
+            confirmElement.classList.remove('rps__confirm--active');
         }
 
         displayResult('-', '-');
